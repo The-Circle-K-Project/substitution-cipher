@@ -1,0 +1,60 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+size_t strlen(const char *s);
+string pre_cipher;
+string post_cipher;
+int key_accurate(string key_input);
+int main(int argc, string argv[])
+{
+
+    if (strlen(argv[1]) != 26) //checks if input is 26 characters
+    {
+        printf("key must be 26 characters long");
+    }
+    else
+    {
+        pre_cipher = get_string("Enter text you would like to cipher. "); // gets the pre cipher word
+        post_cipher = pre_cipher;
+
+
+    }
+
+    int length = strlen(pre_cipher); // gets length of word
+
+    
+    for (int x = 0; x < length; x++)
+    {
+        int index_x = pre_cipher[x] - 97; // gives each letter an index of 0 - 25
+        if (index_x >= 0 && index_x <= 25)
+            {
+                pre_cipher[x] = argv[1][index_x]; //changes letter to the corresponding letter of the index
+            }
+    }
+    printf("%s\n", pre_cipher);
+    string user_key;
+
+    do
+    {
+        user_key = get_string("Enter the key please. "); // gets key from user
+
+
+    }while (key_accurate(user_key) == false);
+
+    printf("%s\n", (post_cipher));
+
+
+}
+
+int key_accurate(string key_input) // checks if the key inputted is correct
+    {
+        if (strcmp(key_input, "peno") == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
